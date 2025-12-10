@@ -5,8 +5,8 @@ export default class NeonEventInstance {
 		this.eventId = instance.eventId
 		this.attendees = instance.attendeeCount || instance.attendees || 0
 		this.teacher = instance.teacher.name || instance.teacher
-		this.startDateTime = DateTime.fromJSDate(instance.startDateTime)
-		this.endDateTime = DateTime.fromJSDate(instance.endDateTime)
+		this.startDateTime = DateTime.fromJSDate(instance.startDateTime).setZone("America/Chicago")
+		this.endDateTime = DateTime.fromJSDate(instance.endDateTime).setZone("America/Chicago")
 		this.price = instance.price
 		this.summary = instance.summary
 		this.capacity = instance.capacity
