@@ -2,7 +2,7 @@
     import AsmblyIcon from '$lib/components/asmblyIcon.svelte';
 
     function getClassImage(eventName, category, classImages) {
-		let result = classImages['/src/lib/images/' + eventName.replace(/\s+/g, '_') + '.jpg'];
+		let result = classImages['/src/lib/images/' + eventName.replace(/(\s+|:)/g, '_') + '.jpg'];
 
 		if (typeof result === 'undefined' || result === null) {
 			switch (category) {
