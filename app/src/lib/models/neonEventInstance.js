@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 
 let allClasses = new Set();
-let allImages = new Set();
+let allImages = null;
 let classToImage = new Map();
 
 // Print out mismatched images and classes, for debugging
@@ -15,7 +15,15 @@ export function printClasses() {
     matchedImages.add(img);
   }
   for (const img of allImages) {
-    if (!matchedImages.has(img)) {
+    if (
+      !matchedImages.has(img) &&
+      !img.includes('Default') &&
+      !img.includes('Neon') &&
+      !img.includes('DavidDiskoNew') &&
+      !img.includes('GabriellePierce') &&
+      !img.includes('JamesFreeman') &&
+      !img.includes('SavannaHarvey')
+    ) {
       s += `missing\t${cleanImage(img)}\n`;
     }
   }
@@ -87,15 +95,23 @@ export default class NeonEventInstance {
 		}
 		allClasses.add(this.name);
 
-		const simplifyName = s => s.toLowerCase().replace(/(\s+|:|-|_)/g, '');
+		const simplifyName = s => 
+      s.toLowerCase()
+        .replace(/(\s|:|-|_)+/g, '')
+        .replace('&', 'and')
+        .split('/').at(-1)
+        .split('.')[0];
+
 		const simpleName = simplifyName(this.name);
 		let result = null;
 		for (const [key, value] of Object.entries(classImages)) {
-		  if (simplifyName(key).includes(simpleName)) {
+		  if (simplifyName(key) === simpleName) {
 		    classToImage.set(this.name, key);
+        printClasses();
 		    return value.default;
 		  }
 		}
+    printClasses();
 
 		let imagePath;
 		switch (this.category) {
