@@ -116,15 +116,15 @@ export default class NeonEventInstance {
 		let imagePath;
 		switch (this.category) {
 		  case 'Laser Cutting':
-		    imagePath = '/src/lib/images/lasersDefault.jpg';
+		    imagePath = '/src/lib/images/classes/lasersDefault.jpg';
 		    break;
 		  default:
 		    const imgPath = this.category.replace(' ', '').toLowerCase()
-		    imagePath = `/src/lib/images/${imgPath}Default.jpg`;
+		    imagePath = `/src/lib/images/classes/${imgPath}Default.jpg`;
 		    break;
 		}
 		if (!(imagePath in classImages)) {
-		  imagePath = '/src/lib/images/classDefault.jpg';
+		  imagePath = '/src/lib/images/classes/classDefault.jpg';
 		}
 
 		return classImages[imagePath].default;

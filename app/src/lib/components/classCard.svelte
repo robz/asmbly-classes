@@ -1,7 +1,7 @@
 <script context="module">
 	import AsmblyIcon from '$lib/components/asmblyIcon.svelte'
 	import { DateTime } from 'luxon';
-	const classImages = import.meta.glob('$lib/images/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
+	const classImages = import.meta.glob('$lib/images/classes/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
 		eager: true,
 		query: {
 			enhanced: true
