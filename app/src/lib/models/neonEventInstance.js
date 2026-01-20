@@ -1,5 +1,35 @@
 import { DateTime } from 'luxon';
 
+let allClasses = new Set();
+let allImages = null;
+let classToImage = new Map();
+
+// Print out mismatched images and classes, for debugging
+export function printClasses() {
+  const cleanImage = img => img.split('/').at('-1');
+  const matchedImages = new Set();
+  let s = '\nClass\tImage\n';
+  for (const c of allClasses) {
+    const img = classToImage.get(c);
+    s += `${c}\t${cleanImage(img ?? 'missing')}\n`;
+    matchedImages.add(img);
+  }
+  for (const img of allImages) {
+    if (
+      !matchedImages.has(img) &&
+      !img.includes('Default') &&
+      !img.includes('Neon') &&
+      !img.includes('DavidDiskoNew') &&
+      !img.includes('GabriellePierce') &&
+      !img.includes('JamesFreeman') &&
+      !img.includes('SavannaHarvey')
+    ) {
+      s += `missing\t${cleanImage(img)}\n`;
+    }
+  }
+  console.log(s);
+}
+
 export default class NeonEventInstance {
 	constructor (instance, eventType) {
 		this.eventId = instance.eventId
@@ -60,22 +90,41 @@ export default class NeonEventInstance {
 	}
 
 	getClassImage(classImages) {
-		let result = classImages['/src/lib/images/' + this.name.replace(/(\s+|:)/g, '_') + '.jpg'];
-
-		if (typeof result === 'undefined' || result === null) {
-			switch (this.category) {
-				case 'Laser Cutting':
-					result = classImages['/src/lib/images/lasersDefault.jpg'];
-					break;
-				default:
-					const imgPath = this.category.replace(' ', '').toLowerCase()
-					result = classImages[`/src/lib/images/${imgPath}Default.jpg`]
-			}
+		if (allImages == null) {
+		  allImages = new Set(Object.keys(classImages));
 		}
-		if (typeof result === 'undefined' || result === null) {
-			result = classImages['/src/lib/images/classDefault.jpg'];
+		allClasses.add(this.name);
+
+		const simplifyName = s => 
+      s.toLowerCase()
+        .replace(/(\s|:|-|_)+/g, '')
+        .replace('&', 'and')
+        .split('/').at(-1)
+        .split('.')[0];
+
+		const simpleName = simplifyName(this.name);
+		let result = null;
+		for (const [key, value] of Object.entries(classImages)) {
+		  if (simplifyName(key) === simpleName) {
+		    classToImage.set(this.name, key);
+		    return value.default;
+		  }
 		}
 
-		return result.default;
+		let imagePath;
+		switch (this.category) {
+		  case 'Laser Cutting':
+		    imagePath = '/src/lib/images/lasersDefault.jpg';
+		    break;
+		  default:
+		    const imgPath = this.category.replace(' ', '').toLowerCase()
+		    imagePath = `/src/lib/images/${imgPath}Default.jpg`;
+		    break;
+		}
+		if (!(imagePath in classImages)) {
+		  imagePath = '/src/lib/images/classDefault.jpg';
+		}
+
+		return classImages[imagePath].default;
 	}
 }
