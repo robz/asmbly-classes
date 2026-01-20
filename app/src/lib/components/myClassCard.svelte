@@ -2,26 +2,26 @@
     import AsmblyIcon from '$lib/components/asmblyIcon.svelte';
 
     function getClassImage(eventName, category, classImages) {
-		let result = classImages['/src/lib/images/classes/' + eventName.replace(/(\s+|:)/g, '_') + '.jpg'];
+		let result = classImages['/src/lib/images/' + eventName.replace(/(\s+|:)/g, '_') + '.jpg'];
 
 		if (typeof result === 'undefined' || result === null) {
 			switch (category) {
 				case 'Laser Cutting':
-					result = classImages['/src/lib/images/classes/lasersDefault.jpg'];
+					result = classImages['/src/lib/images/lasersDefault.jpg'];
 					break;
 				default:
 					const imgPath = category.replace(' ', '').toLowerCase()
-					result = classImages[`/src/lib/images/classes/${imgPath}Default.jpg`]
+					result = classImages[`/src/lib/images/${imgPath}Default.jpg`]
 			}
 		}
 		if (typeof result === 'undefined' || result === null) {
-			result = classImages['/src/lib/images/classes/classDefault.jpg'];
+			result = classImages['/src/lib/images/classDefault.jpg'];
 		}
 
 		return result.default;
 	}
 
-    const classImages = import.meta.glob('$lib/images/classes/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
+    const classImages = import.meta.glob('$lib/images/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
 		eager: true,
 		query: {
 			enhanced: true
