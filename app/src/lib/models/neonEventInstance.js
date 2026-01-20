@@ -107,11 +107,9 @@ export default class NeonEventInstance {
 		for (const [key, value] of Object.entries(classImages)) {
 		  if (simplifyName(key) === simpleName) {
 		    classToImage.set(this.name, key);
-        printClasses();
 		    return value.default;
 		  }
 		}
-    printClasses();
 
 		let imagePath;
 		switch (this.category) {
