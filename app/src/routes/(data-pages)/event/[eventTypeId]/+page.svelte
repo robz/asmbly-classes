@@ -138,6 +138,9 @@
 												<span class:text-lasers={instance.attendees === instance.capacity}
 													>{instance.attendees}</span
 												>
+												{#if instance.attendees === instance.capacity && classType.category === 'Orientation'}
+													<span class="font-semibold"> (Class Full)</span>
+												{/if}
 											</p>
 										</div>
 										<div class="flex items-center justify-end pb-4 lg:pb-0">
@@ -147,6 +150,8 @@
 													href={data.baseRegLink.url + instance.eventId}
 													target="_blank">Register</a
 												>
+											{:else if instance.attendees === instance.capacity && classType.category === 'Orientation'}
+												<!-- No waitlist for Orientation classes -->
 											{:else if instance.attendees === instance.capacity}
 												<div class="flex flex-col items-center justify-center">
 													<button
