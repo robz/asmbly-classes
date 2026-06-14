@@ -95,6 +95,8 @@ First-time E2E setup: `npx playwright install chromium` (browser binaries) and `
 
 The E2E suite runs against a Postgres container seeded from `dev/dev-db.sql` — the same dump used for local dev. The fresher that dump is, the more representative the tests are; running them against stale seed data may pass while real production data would fail.
 
+CI posts a coverage report on each PR, generated from the **unit** suite only (`npm test -- --coverage`). E2E tests aren't instrumented, so the percentages reflect only what the unit/Vitest tests exercise. Run locally the same way to preview the report at `app/coverage/index.html`, which is git-ignored.
+
 ## Environment variables
 
 The webapp expects the following (referenced from `app/src/lib/server/secrets.js` and route handlers). In production these are set on the App Runner service; in local dev, set them in your shell or in `app/.env`. Note that the recurring Lambda jobs do not read these from `.env`; they pull equivalents from SSM at invocation time.
