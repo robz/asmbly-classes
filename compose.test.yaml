@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:17
-    container_name: asmbly-dev-db
+    container_name: asmbly-test-db
     environment:
       POSTGRES_PASSWORD: localdev
     ports:

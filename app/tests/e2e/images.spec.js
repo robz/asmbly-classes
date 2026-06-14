@@ -5,8 +5,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
-const repositoryRoot = path.resolve(testDirectory, '../..');
-const imageDirectory = path.resolve(testDirectory, '../src/lib/images');
+const repositoryRoot = path.resolve(testDirectory, '../../..');
+const imageDirectory = path.resolve(testDirectory, '../../src/lib/images');
 const imagePathPrefix = 'app/src/lib/images/';
 const supportedImageExtension = /\.(avif|gif|heif|jpeg|jpg|png|tiff|webp)$/;
 const requiredFallbackImages = [

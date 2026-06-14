@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const appDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-	testDir: path.join(appDirectory, 'tests'),
+	testDir: path.join(appDirectory, 'tests/e2e'),
 	fullyParallel: true,
 	reporter: process.env.CI ? 'github' : 'list',
 	use: {
