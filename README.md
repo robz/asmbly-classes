@@ -93,6 +93,8 @@ Run from `app/`.
 
 First-time E2E setup: `npx playwright install chromium` (browser binaries) and `npx prisma generate` (Prisma client) from `app/`.
 
+The E2E suite runs against a Postgres container seeded from `dev/dev-db.sql` — the same dump used for local dev. The fresher that dump is, the more representative the tests are; running them against stale seed data may pass while real production data would fail.
+
 ## Environment variables
 
 The webapp expects the following (referenced from `app/src/lib/server/secrets.js` and route handlers). In production these are set on the App Runner service; in local dev, set them in your shell or in `app/.env`. Note that the recurring Lambda jobs do not read these from `.env`; they pull equivalents from SSM at invocation time.
