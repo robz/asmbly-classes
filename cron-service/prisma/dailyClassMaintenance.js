@@ -353,6 +353,7 @@ async function main(config) {
         const email = sendMIMEmessage({
 			from: 'Asmbly Education Team <notification@asmbly.org>',
 			to: requester.email,
+			cc: 'education@asmbly.org',
 			replyTo: 'membership@asmbly.org',
 			subject: `${requester.eventType} notification request`,
 			html: emailBody,

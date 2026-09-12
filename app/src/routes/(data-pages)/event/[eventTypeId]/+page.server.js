@@ -170,6 +170,7 @@ export const actions = {
 		const asmblyResponse = sendMIMEmessage({
 			from: 'Asmbly AdminBot <notification@asmbly.org>',
 			to: 'classes@asmbly.org',
+			cc: 'education@asmbly.org',
 			replyTo: email,
 			subject: `${sessionType} class request - ${firstName} ${lastName}`,
 			html: asmblyBody
@@ -178,6 +179,7 @@ export const actions = {
 		const requesterResponse = sendMIMEmessage({
 			from: 'Asmbly Education Team <notification@asmbly.org>',
 			to: email,
+			cc: 'education@asmbly.org',
 			replyTo: 'classes@asmbly.org',
 			subject: `${sessionType} class request`,
 			html: requesterBody,
@@ -251,6 +253,7 @@ export const actions = {
 		const requesterCall = sendMIMEmessage({
 			from: 'Asmbly Education Team <notification@asmbly.org>',
 			to: email,
+			cc: 'education@asmbly.org',
 			replyTo: 'membership@asmbly.org',
 			subject: `Waitlist request for ${classInstance.eventType.name}`,
 			html: requesterBody,
@@ -342,6 +345,7 @@ export const actions = {
 		const requesterCall = sendMIMEmessage({
 			from: 'Asmbly Education Team <notification@asmbly.org>',
 			to: email,
+			cc: 'education@asmbly.org',
 			replyTo: 'membership@asmbly.org',
 			subject: `Notification request for ${classType.name}`,
 			html: requesterBody,
@@ -436,6 +440,7 @@ export const actions = {
 		const requesterCall = sendMIMEmessage({
 			from: 'Asmbly Education Team <notification@asmbly.org>',
 			to: email,
+			cc: 'education@asmbly.org',
 			replyTo: 'membership@asmbly.org',
 			subject: `Class request for ${classType.name}`,
 			html: requesterBody,

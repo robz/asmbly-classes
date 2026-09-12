@@ -231,6 +231,7 @@ async function main(config) {
     const email = await sendMIMEmessage({
         from: 'Asmbly AdminBot <notification@asmbly.org>',
         to: 'classes@asmbly.org',
+        cc: 'education@asmbly.org',
         subject: `Weekly Event Request Report: ${weekStart.toLocaleString()} - ${weekEnd.toLocaleString()}`,
         html: emailBody,
     }, config)

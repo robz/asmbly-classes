@@ -140,6 +140,7 @@ export async function POST({ request }) {
             const response = sendMIMEmessage({
                 from: 'Asmbly Education Team <notification@asmbly.org>',
                 to: email,
+                cc: 'education@asmbly.org',
                 replyTo: 'membership@asmbly.org',
                 subject: `Open seat in ${eventInstanceDecrement.eventType.name} at Asmbly`,
                 html: emailBody
